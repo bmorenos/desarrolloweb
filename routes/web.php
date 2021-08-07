@@ -17,5 +17,9 @@ Route::get('/', function () {return view('welcome');});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 
-Route::get('productos', 'privado\ProductosController@index')->name('productos');
+Route::get('/productos',[\App\Http\Controllers\products\ProductosController::class,'index'])->name('productos');
+Route::get('/productos/create',[\App\Http\Controllers\products\ProductosController::class,'create'])->name('productos.crear');
+Route::post('/productos/create',[\App\Http\Controllers\products\ProductosController::class,'store'])->name('productos.guardar');
+Route::get('/productos/editar/{id}',[\App\Http\Controllers\products\ProductosController::class,'edit'])->name('productos.editar');
+
 

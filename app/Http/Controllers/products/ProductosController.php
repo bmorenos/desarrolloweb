@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\privado;
+namespace App\Http\Controllers\products;
+
 use App\Http\Controllers\Controller;
+use App\Http\Requests\privado\ValidacionProductos;
 use App\Models\models\privado\Productos;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,7 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        //
+        return view ( 'productos.crear');
     }
 
     /**
@@ -34,9 +36,11 @@ class ProductosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidacionProductos $request)
     {
-        //
+        $data = $request->validated();
+        Productos::create($data);
+        return redirect()->route('productos')->with('mensaje', 'Producto creado con éxito.');
     }
 
     /**
@@ -58,7 +62,8 @@ class ProductosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $productoss = Productos::find($id);
+        return view ( 'productos.edit', compact('productoss'));
     }
 
     /**
@@ -68,9 +73,13 @@ class ProductosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ValidacionProductos $request, $id)
     {
-        //
+        $producctos = Productos::find($id);
+        $data = $request->validated();
+        $producctos->fill($data);
+        $producctos->save();
+        return redirect()->route('cajachica')->with(["mensaje"=>"Registro actualizado con Éxito"]);
     }
 
     /**
