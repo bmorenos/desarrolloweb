@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form class="container p-5  my-5 bg-white shadow-lg rounded-lg" action="{{route(['id'=>$productoss->prod_id])}}" method="POST">
+    <form class="container p-5  my-5 bg-white shadow-lg rounded-lg" action="{{route(['productos.actualizar', 'id'=>$productoss->prod_id])}}" method="POST">
         <div class="d-flex align-items-center justify-content-center"><h2  class="display-4 inline-block">Editar Cliente</h2></div>
         <hr>
         <ul class="text-danger p-3">
@@ -11,7 +11,7 @@
         @method('PATCH')
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre de Producto</label>
-            <input type="text" class="form-control" name="prod_nombre" value="{{$productoss->prod_nombre}}">
+            <input type="text" class="form-control" name="prod_nombre" value="">
         </div>
 
         <div class="mb-3">

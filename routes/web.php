@@ -21,5 +21,6 @@ Route::get('/productos',[\App\Http\Controllers\products\ProductosController::cla
 Route::get('/productos/create',[\App\Http\Controllers\products\ProductosController::class,'create'])->name('productos.crear');
 Route::post('/productos/create',[\App\Http\Controllers\products\ProductosController::class,'store'])->name('productos.guardar');
 Route::get('/productos/editar/{id}',[\App\Http\Controllers\products\ProductosController::class,'edit'])->name('productos.editar');
+Route::post('/productos/update/{id}',[\App\Http\Controllers\products\ProductosController::class,'update'])->name('productos.actualizar');
 
 
